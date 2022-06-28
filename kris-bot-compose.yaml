@@ -1,0 +1,9 @@
+version: '3.3'
+services: 
+  kris-website:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 9000:9000
