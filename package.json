@@ -4,7 +4,7 @@
   "description": "My webpack project",
   "private": true,
   "scripts": {
-    "start": "DEBUG=app:* node src/index.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +12,6 @@
   "dependencies": {
     "dotenv": "8.2.0",
     "express": "4.17.1",
-    "telegraf": "4.1.2",
     "debug": "4.3.1"
   },
   "devDependencies": {

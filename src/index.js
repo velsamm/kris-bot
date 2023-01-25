@@ -9,22 +9,7 @@ if (!process.env.RECEIVERS) {
 
 debug('App receivers: ', process.env.RECEIVERS)
 
-const bot = require('./bot')
-
-process.once('SIGINT', () => {
-    try {
-        bot.stop('SIGINT')
-    } catch (e) {
-        debug(e)
-    }
-})
-process.once('SIGTERM', () => {
-    try {
-        bot.stop('SIGTERM')
-    } catch (e) {
-        debug(e)
-    }
-})
+const notify = require('./notificator')
 
 app.use(express.json())
 
@@ -46,16 +31,11 @@ ${issue}
 ${source}`
 
     const receivers = (process.env.RECEIVERS).split(',')
-    bot.sendNotification(receivers, tgMessage)
-        .then(() => {
-            res.send()
-        })
-        .catch((e) => {
-            debug(e)
-            res.status(500).send()
-        })
+    receivers.forEach(receiver => {
+        notify(receiver, tgMessage)
+    })
 
-    return
+    return res.send()
 })
 
 app.listen(9000)

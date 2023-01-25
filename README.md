@@ -10,5 +10,5 @@ npm start
 
 ```
 docker build -t kris-bot .
-docker-compose -f kris-bot-compose.yaml up -d --build --force-recreate
+docker-compose --env-file .env -f kris-bot-compose.yaml up -d --build --force-recreate
 ```
